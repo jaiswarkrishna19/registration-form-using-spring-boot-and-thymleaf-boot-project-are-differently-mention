@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add or Update User</title>
+</head>
+<body>
+    <form th:action="@{/add}" th:object="${user}" method="post">
+        <input type="hidden" th:field="*{u_id}" />
+        <table border="1" align="center">
+            <caption><h2 th:text="${user.u_id} == null ? 'Add User' : 'Update User'"></h2></caption>
+            <tr>
+                <td><label for="name">Name:</label></td>
+                <td><input type="text" id="name" th:field="*{name}" required /></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" id="email" th:field="*{email}" required /></td>
+            </tr>
+            <tr>
+                <td><label for="age">Age:</label></td>
+                <td><input type="number" id="age" th:field="*{age}" required min="18" max="60" /></td>
+            </tr>
+            <tr>
+                <td><label for="contact">Contact:</label></td>
+                <td><input type="text" id="contact" th:field="*{contact}" required /></td>
+            </tr>
+            <tr>
+                <td><label for="address">Address:</label></td>
+                <td><input type="text" id="address" th:field="*{address}" required /></td>
+            </tr>
+        </table>
+        <br/>
+        <div style="text-align:center;">
+            <button type="submit">Submit</button>
+            <button type="reset">Clear</button>
+        </div>
+    </form>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a th:href="@{/get}">Back to User List</a>
+    </div>
+</body>
+</html>

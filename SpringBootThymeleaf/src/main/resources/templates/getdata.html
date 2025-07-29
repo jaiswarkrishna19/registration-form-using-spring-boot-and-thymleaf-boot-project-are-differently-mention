@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .message {
+            text-align: center;
+            color: green;
+            font-weight: bold;
+        }
+
+        .add-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Success Message -->
+    <div th:if="${message}" class="message">
+        <p th:text="${message}"></p>
+    </div>
+
+    <!-- User Table -->
+    <table>
+        <caption><h2>User List</h2></caption>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="stud : ${list}">
+            <td th:text="${stud.u_id}"></td>
+            <td th:text="${stud.name}"></td>
+            <td th:text="${stud.email}"></td>
+            <td th:text="${stud.age}"></td>
+            <td th:text="${stud.contact}"></td>
+            <td th:text="${stud.address}"></td>
+            <td>
+                <a th:href="@{/get/{u_id}(u_id=${stud.u_id})}" style="color:green;">Update</a> |
+                <a th:href="@{/delete/{u_id}(u_id=${stud.u_id})}" style="color:red;">Delete</a>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Add New User Link -->
+    <div class="add-link">
+        <a th:href="@{/}">Click to Add New User</a>
+    </div>
+
+</body>
+</html>
